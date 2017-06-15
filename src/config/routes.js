@@ -15,13 +15,13 @@ const routes = [
             {
                 path: '/home',
                 component: (resolve) => {
-                    require(['./../components/Home.vue'], resolve)
+                    require(['./../components/home/Home.vue'], resolve)
                 }
             },
             {
                 path: '/about',
                 component: (resolve) => {
-                    require(['./../components/About.vue'], resolve)
+                    require(['./../components/about/About.vue'], resolve)
                 }
             }
         ]

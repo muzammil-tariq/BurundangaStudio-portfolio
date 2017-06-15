@@ -20,7 +20,8 @@
     @import "~assets/css/variables";
 
     .logo {
-        position: fixed;
+        position: absolute;
+        z-index: 2;
         top: 20px;
         left: 20px;
         width: 250px;
