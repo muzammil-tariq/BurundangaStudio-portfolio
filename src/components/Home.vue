@@ -37,7 +37,7 @@
         -webkit-transform: translateY(50px);
         -moz-transform: translateY(50px);
         h1 {
-            color: blue;
+            color: white;
         }
     }
 </style>

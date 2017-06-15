@@ -3,7 +3,10 @@
 
 <template>
     <div id="web">
-        <frame></frame>
+        <logo></logo>
+        <navigation></navigation>
+        <social></social>
+        <contact></contact>
         <transition name="transition" @enter="enter" @leave="leave" :css="false" mode="out-in" appear>
             <router-view ref="page"></router-view>
         </transition>
@@ -15,7 +18,10 @@
 import { TweenMax } from 'gsap'
 
 import Device from './config/device'
-import Frame from './components/common/Frame'
+import Logo from './components/common/Logo'
+import Contact from './components/common/Contact'
+import Social from './components/common/Social'
+import Navigation from './components/common/Navigation'
 
 export default {
     name: 'web',
@@ -33,7 +39,10 @@ export default {
         }
     },
     components: {
-        Frame
+        Logo,
+        Contact,
+        Social,
+        Navigation
     },
 }
 
