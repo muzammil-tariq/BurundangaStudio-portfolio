@@ -17,3 +17,14 @@ body, html, #app {
 h1, h2, h3, h4, p, a {
     margin: 0;
 }
+
+@font-face {
+	font-family: 'NeubauGrotesk';
+	src: url('~/fonts/NeubauGrotesk-Nor.eot');
+	src: url('~/fonts/NeubauGrotesk-Nor.eot?#iefix') format('embedded-opentype'),
+		 url('~/fonts/NeubauGrotesk-Nor.woff') format('woff'),
+		 url('~/fonts/NeubauGrotesk-Nor.ttf') format('truetype'),
+		 url('~/fonts/NeubauGrotesk-Nor.svg#NeubauGrotesk-Nor') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
