@@ -4,6 +4,16 @@
 @import "variables";
 @import "normalize";
 
-body, html {
+body, html, #app {
     font-family: $font-family;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+h1, h2, h3, h4, p, a {
+    margin: 0;
 }

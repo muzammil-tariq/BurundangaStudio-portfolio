@@ -38,7 +38,6 @@
         -moz-transform: translateY(50px);
         h1 {
             color: blue;
-            margin: 20px 0px 10px 0px;
         }
     }
 </style>

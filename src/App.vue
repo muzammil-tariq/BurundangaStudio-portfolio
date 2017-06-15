@@ -3,7 +3,7 @@
 
 <template>
     <div id="web">
-        <header-component></header-component>
+        <frame></frame>
         <transition name="transition" @enter="enter" @leave="leave" :css="false" mode="out-in" appear>
             <router-view ref="page"></router-view>
         </transition>
@@ -15,18 +15,15 @@
 import { TweenMax } from 'gsap'
 
 import Device from './config/device'
-// import store from './data/vuex/store'
-import HeaderComponent from './components/common/Header'
+import Frame from './components/common/Frame'
 
 export default {
     name: 'web',
-    // store,
     mounted() {
         Device.setDevice()
     },
     methods: {
         enter(el, done) {
-            // store.commit('increment')
             if (this.$refs.page.enter) this.$refs.page.enter(el, done)
             else TweenMax.to(el, 0.5, { opacity: 1, y: 0, onComplete: done })
         },
@@ -36,7 +33,7 @@ export default {
         }
     },
     components: {
-        HeaderComponent
+        Frame
     },
 }
 
@@ -44,14 +41,14 @@ export default {
 
 <style lang="scss">
 
-    @import "~assets/css/variables";
+    @import "~assets/css/main";
 
     #web {
-        font-family: $font-family;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
-        margin-top: 40px;
+        background: black;
+        height: 100%;
     }
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s
