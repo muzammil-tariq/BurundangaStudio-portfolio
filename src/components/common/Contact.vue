@@ -19,11 +19,8 @@
     .contact {
         position: absolute;
         z-index: 2;
-        bottom: 20px;
-        right: 20px;
-        width: 250px;
-        height: 60px;
-        border: 1px solid red;
+        bottom: 25px;
+        right: 25px;
         z-index: 9;
         a {
             color: white;

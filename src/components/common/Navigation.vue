@@ -18,11 +18,8 @@
     .navigation {
         position: absolute;
         z-index: 2;
-        top: 20px;
-        right: 20px;
-        width: 250px;
-        height: 60px;
-        border: 1px solid red;
+        top: 50px;
+        right: 25px;
         a {
             color: white;
         }
