@@ -130,6 +130,7 @@
                 }
             }
             .label {
+                cursor: auto;
                 transform: translateY(-2px);
                 -webkit-transform: translateY(-2px);
                 -moz-transform: translateY(-2px);

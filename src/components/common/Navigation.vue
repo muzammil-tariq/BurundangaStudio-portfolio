@@ -1,6 +1,6 @@
 <template>
-    <div class="navigation">
-        <div class="cross" @click="switchPage">
+    <div class="navigation" @click="switchPage">
+        <div class="cross">
             <svg viewBox="0 0 13.44 13.44">
                   <title>
                       cross
@@ -8,8 +8,8 @@
                   <path d="M13.44.71L12.73 0 6.72 6.01.71 0 0 .71l6.01 6.01L0 12.73l.71.71 6.01-6.02 6.01 6.02.71-.71-6.02-6.01L13.44.71"/>
             </svg>
         </div>
-        <router-link to="home" class="home"><span class="mask">Close <span class="line"></span></span></router-link>
-        <router-link to="about" class="about"><span class="mask">Info</span></router-link>
+        <a class="home"><span class="mask">Close <span class="line"></span></span></a>
+        <a class="about"><span class="mask">Info</span></a>
     </div>
 </template>
 
@@ -72,6 +72,7 @@
 
 <style lang="scss" scoped>
     .navigation {
+        cursor: pointer;
         position: absolute;
         z-index: 2;
         top: 35px;
