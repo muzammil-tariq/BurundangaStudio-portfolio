@@ -1,8 +1,6 @@
 <template>
-    <div class="contact" @mouseenter="updateStatus" @mouseleave="updateStatus">
-        <a href="mailto: hola@burundanga.studio">
-            hola@burundanga.studio
-        </a>
+    <div class="contact" @mouseenter="updateStatus" @mouseleave="updateStatus" @click="sendEmail">
+        <a>hola@burundanga.studio</a>
     </div>
 </template>
 
@@ -45,6 +43,9 @@
                         }
                     }
                 })
+            },
+            sendEmail() {
+                window.location.href = 'mailto:hola@burundanga.studio.com?subject=We%20need%20some%20good%20Burundanga'
             }
         }
     }
@@ -59,6 +60,7 @@
         right: 30px;
         z-index: 9;
         a {
+            cursor: pointer;
             font-size: 16px;
             color: white;
         }
