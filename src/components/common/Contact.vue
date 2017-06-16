@@ -1,6 +1,6 @@
 <template>
     <div class="contact">
-        <a>
+        <a href="mailto: hola@burundanga.studio">
             hola@burundanga.studio
         </a>
     </div>
