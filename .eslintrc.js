@@ -29,6 +29,8 @@ module.exports = {
     'no-return-assign': 0,
     'global-require': 0,
     'import/no-dynamic-require': 0,
+    'prefer-template': 0,
+    'curly': 0,
     // extra
     'import/extensions': ['error', 'always', {
       'js': 'never',

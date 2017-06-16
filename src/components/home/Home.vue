@@ -4,7 +4,7 @@
 <template>
     <div class="home" id="home">
         <div class="content">
-            <h1>{{ msg }}</h1>
+            <logo-sequence></logo-sequence>
         </div>
     </div>
 </template>
@@ -12,6 +12,8 @@
 <script>
 
     import { TweenMax } from 'gsap'
+
+    import LogoSequence from './components/LogoSequence'
 
     export default {
         name: 'home',
@@ -27,6 +29,9 @@
             leave(el, done) {
                 TweenMax.to(el, 0.5, { opacity: 0, y: 50, onComplete: done })
             }
+        },
+        components: {
+            LogoSequence
         }
     }
 
