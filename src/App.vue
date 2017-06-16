@@ -30,10 +30,12 @@ export default {
     },
     methods: {
         enter(el, done) {
+            TweenMax.killTweensOf(this.$el)
             if (this.$refs.page.enter) this.$refs.page.enter(el, done)
             else TweenMax.to(el, 0.5, { opacity: 1, y: 0, onComplete: done })
         },
         leave(el, done) {
+            TweenMax.killTweensOf(this.$el)
             if (this.$refs.page.leave) this.$refs.page.leave(el, done)
             else TweenMax.to(el, 0.5, { opacity: 0, y: 50, onComplete: done })
         }

@@ -22,6 +22,7 @@
         },
         methods: {
             leave(el, done) {
+                TweenMax.killTweensOf(this.$el)
                 this.$refs.logoSequence.index = this.$refs.logoSequence.numFiles
                 this.$refs.logoSequence.leaveAnimation()
                 setTimeout(done, 1750)

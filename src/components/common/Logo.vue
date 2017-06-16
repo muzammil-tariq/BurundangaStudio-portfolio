@@ -25,8 +25,8 @@
     .logo {
         position: absolute;
         z-index: 2;
-        top: 50px;
-        left: 25px;
+        top: 35px;
+        left: 30px;
         svg {
             width: 150px;
             path {

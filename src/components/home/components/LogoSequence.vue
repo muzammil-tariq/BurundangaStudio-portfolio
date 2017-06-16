@@ -88,8 +88,8 @@
 <style lang="scss" scoped>
     .logo-sequence {
         canvas {
-            width: 400px;
-            height: 400px;
+            width: 460px;
+            height: 460px;
         }
     }
 </style>
