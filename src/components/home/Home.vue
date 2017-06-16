@@ -4,14 +4,12 @@
 <template>
     <div class="home" id="home">
         <div class="content">
-            <logo-sequence></logo-sequence>
+            <logo-sequence ref="logoSequence"></logo-sequence>
         </div>
     </div>
 </template>
 
 <script>
-
-    import { TweenMax } from 'gsap'
 
     import LogoSequence from './components/LogoSequence'
 
@@ -23,11 +21,10 @@
             }
         },
         methods: {
-            enter(el, done) {
-                TweenMax.to(el, 0.5, { opacity: 1, y: 0, rotation: 360, onComplete: done })
-            },
             leave(el, done) {
-                TweenMax.to(el, 0.5, { opacity: 0, y: 50, onComplete: done })
+                this.$refs.logoSequence.index = 50
+                this.$refs.logoSequence.leaveAnimation()
+                setTimeout(done, 1000)
             }
         },
         components: {
@@ -41,11 +38,7 @@
     .home {
         position: relative;
         z-index: 1;
-        opacity: 0;
         height: 100%;
-        transform: translateY(50px);
-        -webkit-transform: translateY(50px);
-        -moz-transform: translateY(50px);
         .content {
             position: absolute;
             top: 50%;

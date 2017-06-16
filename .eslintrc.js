@@ -31,6 +31,7 @@ module.exports = {
     'import/no-dynamic-require': 0,
     'prefer-template': 0,
     'curly': 0,
+    'no-undef': 0,
     // extra
     'import/extensions': ['error', 'always', {
       'js': 'never',

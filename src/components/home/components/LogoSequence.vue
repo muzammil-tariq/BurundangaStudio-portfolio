@@ -18,7 +18,10 @@
                 canvas: null,
                 context: null,
                 numFiles: 50,
-                loader: null
+                loader: null,
+                raf: null,
+                index: 0,
+                files: []
             }
         },
         created() {
@@ -32,15 +35,46 @@
             loadImages() {
                 this.loader = assetsLoader({
                     assets: this.getAssets()
-                }).on('progress', (percent) => {
-                    console.log(percent)
-                }).start()
+                })
+                .on('complete', () => {
+                    this.initCanvas()
+                    this.enterAnimation()
+                })
+                .start()
             },
             getAssets() {
-                const files = []
-                for (let i = 1; i < this.numFiles; i++)
-                    files.push('img/logo_sequence/burundanga_studio_' + String(i) + '.jpg')
-                return files
+                for (let i = 0; i < this.numFiles; i++)
+                    this.files.push('img/logo_sequence/burundanga_studio_' + String(i) + '.jpg')
+                return this.files
+            },
+            initCanvas() {
+                const img = new Image()
+                img.src = this.files[this.index]
+                this.canvas.width = img.width
+                this.canvas.height = img.height
+                this.context.drawImage(img, 0, 0)
+            },
+            enterAnimation() {
+                if (this.index === this.numFiles) {
+                    cancelAnimationFrame(this.raf)
+                    return
+                }
+                this.index++
+                const img = new Image()
+                img.src = this.files[this.index]
+                this.context.drawImage(img, 0, 0)
+                this.raf = requestAnimationFrame(this.enterAnimation)
+            },
+            leaveAnimation() {
+                if (this.index === 0) {
+                    cancelAnimationFrame(this.raf)
+                    return
+                }
+                this.index--
+                const img = new Image()
+                img.src = this.files[this.index]
+                this.context.drawImage(img, 0, 0)
+                this.raf = requestAnimationFrame(this.leaveAnimation)
             }
         }
     }
@@ -52,7 +86,6 @@
         canvas {
             width: 400px;
             height: 400px;
-            border: 1px solid white;
         }
     }
 </style>
