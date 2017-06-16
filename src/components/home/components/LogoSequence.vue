@@ -17,7 +17,7 @@
             return {
                 canvas: null,
                 context: null,
-                numFiles: 50,
+                numFiles: 97,
                 loader: null,
                 raf: null,
                 index: 0,
@@ -44,8 +44,12 @@
             },
             getAssets() {
                 for (let i = 0; i < this.numFiles; i++)
-                    this.files.push('img/logo_sequence/burundanga_studio_' + String(i) + '.jpg')
+                    this.files.push('img/logo_sequence/burundanga_studio_ident_000' + this.returnId(i) + '.jpg')
                 return this.files
+            },
+            returnId(id) {
+                const n = (id < 10) ? '0' : ''
+                return n + String(id)
             },
             initCanvas() {
                 const img = new Image()

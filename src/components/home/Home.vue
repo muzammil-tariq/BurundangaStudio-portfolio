@@ -22,9 +22,9 @@
         },
         methods: {
             leave(el, done) {
-                this.$refs.logoSequence.index = 50
+                this.$refs.logoSequence.index = this.$refs.logoSequence.numFiles
                 this.$refs.logoSequence.leaveAnimation()
-                setTimeout(done, 1000)
+                setTimeout(done, 1750)
             }
         },
         components: {
