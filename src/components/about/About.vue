@@ -10,7 +10,7 @@
             </h1>
         </div>
         <background v-if="xaviBg" image="img/xavier_cusso.jpg"></background>
-        <background v-if="christianBg" image="img/xavier_cusso.jpg"></background>
+        <background v-if="christianBg" image="img/christian_macmillan.jpg"></background>
     </div>
 </template>
 
