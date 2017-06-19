@@ -59,7 +59,7 @@
                 this.context.drawImage(img, 0, 0)
             },
             enterAnimation() {
-                if (this.index === this.numFiles) {
+                if (this.index === this.numFiles - 1) {
                     cancelAnimationFrame(this.raf)
                     return
                 }
@@ -77,6 +77,7 @@
                 this.index--
                 const img = new Image()
                 img.src = this.files[this.index]
+                console.log(img.src)
                 this.context.drawImage(img, 0, 0)
                 this.raf = requestAnimationFrame(this.leaveAnimation)
             }
