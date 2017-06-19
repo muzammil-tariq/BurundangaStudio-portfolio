@@ -3,10 +3,10 @@
 
 <template>
     <div id="web">
-        <logo></logo>
-        <navigation></navigation>
-        <social></social>
-        <contact></contact>
+        <logo ref="logo"></logo>
+        <navigation ref="navigation"></navigation>
+        <social ref="social"></social>
+        <contact ref="contact"></contact>
         <transition name="transition" @enter="enter" @leave="leave" :css="false" mode="out-in" appear>
             <router-view ref="page"></router-view>
         </transition>

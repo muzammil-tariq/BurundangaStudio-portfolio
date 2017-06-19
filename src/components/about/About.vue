@@ -4,12 +4,19 @@
 <template>
     <div class="about" id="about">
         <div class="content">
-            <h1><b>Burundanga.Studio</b> is an interactive design practice with an experimental core. A side project consisting of designer <a @mouseenter="updateStatus" @mouseleave="updateStatus" @click="openXavi"><span></span>@xaviercusso</a> & developer <a @mouseenter="updateStatus" @mouseleave="updateStatus" @click="openChristian"><span></span>@cmacmillanmarin</a>.</h1>
+            <h1><b>Burundanga.Studio</b> is an interactive design practice with an experimental core. A side project consisting of
+                designer <a class="xavi" @mouseenter="updateStatus" @mouseleave="updateStatus" @click="openXavi"><span></span>@xaviercusso</a>
+                & developer <a class="christian" @mouseenter="updateStatus" @mouseleave="updateStatus" @click="openChristian"><span></span>@cmacmillanmarin</a>.
+            </h1>
         </div>
+        <background v-if="xaviBg" image="img/xavier_cusso.jpg"></background>
+        <background v-if="christianBg" image="img/xavier_cusso.jpg"></background>
     </div>
 </template>
 
 <script>
+
+    import Background from './components/Background'
 
     export default {
         name: 'about',
@@ -17,6 +24,8 @@
             return {
                 hover: false,
                 index: 0,
+                xaviBg: false,
+                christianBg: false,
                 rainbowColors: [
                     '#9400D3',
                     '#4B0082',
@@ -30,8 +39,15 @@
         },
         methods: {
             updateStatus(e) {
+                if (e.target.classList.value === 'xavi') this.xaviBg = !this.xaviBg
+                else this.christianBg = !this.christianBg
                 this.hover = !this.hover
-                this.animate(e)
+                const autoAlpha = (this.hover) ? 0 : 1
+                TweenMax.set(this.$parent.$refs.logo.$el, { autoAlpha })
+                TweenMax.set(this.$parent.$refs.navigation.$el, { autoAlpha })
+                TweenMax.set(this.$parent.$refs.social.$el, { autoAlpha })
+                TweenMax.set(this.$parent.$refs.contact.$el, { autoAlpha })
+                // this.animate(e)
             },
             animate(e) {
                 if (!this.hover) return
@@ -55,6 +71,9 @@
             openChristian() {
                 window.open('https://twitter.com/cmacmillanmarin', '_blank')
             }
+        },
+        components: {
+            Background
         }
     }
 

@@ -9,7 +9,7 @@
             </svg>
         </div>
         <a class="home"><span class="mask">Close <span class="line"></span></span></a>
-        <a class="about"><span class="mask">Info</span></a>
+        <a class="about"><span class="mask">info</span></a>
     </div>
 </template>
 

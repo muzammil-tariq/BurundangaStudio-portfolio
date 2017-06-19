@@ -23,7 +23,7 @@
                 </svg>
             </li>
             <li class="label">
-                <span class="line"></span>Stay stoned!
+                <span class="line"></span>stay tuned!
             </li>
         </ul>
     </div>
