@@ -77,7 +77,6 @@
                 this.index--
                 const img = new Image()
                 img.src = this.files[this.index]
-                console.log(img.src)
                 this.context.drawImage(img, 0, 0)
                 this.raf = requestAnimationFrame(this.leaveAnimation)
             }
