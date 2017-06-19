@@ -16,6 +16,7 @@
 <script>
 
 import { TweenMax } from 'gsap'
+import assetsLoader from 'assets-loader'
 
 import Device from './config/device'
 import Logo from './components/common/Logo'
@@ -25,10 +26,24 @@ import Navigation from './components/common/Navigation'
 
 export default {
     name: 'web',
+    data() {
+        return {
+            loader: null
+        }
+    },
     mounted() {
         Device.setDevice()
+        this.loadImages()
     },
     methods: {
+        loadImages() {
+            this.loader = assetsLoader({
+                assets: [
+                    'img/xavier_cusso.jpg',
+                    'img/christian_macmillan.jpg'
+                ]
+            }).start()
+        },
         enter(el, done) {
             TweenMax.killTweensOf(this.$el)
             if (this.$refs.page.enter) this.$refs.page.enter(el, done)
