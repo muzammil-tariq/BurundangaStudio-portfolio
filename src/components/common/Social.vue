@@ -100,7 +100,7 @@
                 margin: 0;
                 padding: 0;
                 color: white;
-                font-size: 16px;
+                font-size: 18px;
                 margin: 0px 4px;
                 height: 12px;
                 .line {

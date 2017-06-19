@@ -85,9 +85,9 @@
         z-index: 1;
         opacity: 0;
         height: 100%;
-        transform: translateY(50px);
-        -webkit-transform: translateY(50px);
-        -moz-transform: translateY(50px);
+        transform: translateY(20px);
+        -webkit-transform: translateY(20px);
+        -moz-transform: translateY(20px);
         .content {
             position: absolute;
             top: 50%;

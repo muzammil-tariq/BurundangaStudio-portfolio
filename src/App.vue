@@ -37,7 +37,7 @@ export default {
         leave(el, done) {
             TweenMax.killTweensOf(this.$el)
             if (this.$refs.page.leave) this.$refs.page.leave(el, done)
-            else TweenMax.to(el, 0.5, { opacity: 0, y: 50, onComplete: done })
+            else TweenMax.to(el, 0.5, { opacity: 0, y: 20, onComplete: done })
         }
     },
     components: {

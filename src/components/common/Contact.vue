@@ -61,7 +61,7 @@
         z-index: 9;
         a {
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             color: white;
         }
     }
