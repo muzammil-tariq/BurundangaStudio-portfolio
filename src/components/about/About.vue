@@ -16,6 +16,7 @@
 
 <script>
 
+    import Device from '../../config/device'
     import Background from './components/Background'
 
     export default {
@@ -39,14 +40,15 @@
         },
         methods: {
             updateStatus(e) {
+                if (!Device.isDesktop) return
                 if (e.target.classList.value === 'xavi') this.xaviBg = !this.xaviBg
                 else this.christianBg = !this.christianBg
                 this.hover = !this.hover
-                const autoAlpha = (this.hover) ? 0 : 1
-                TweenMax.set(this.$parent.$refs.logo.$el, { autoAlpha })
-                TweenMax.set(this.$parent.$refs.navigation.$el, { autoAlpha })
-                TweenMax.set(this.$parent.$refs.social.$el, { autoAlpha })
-                TweenMax.set(this.$parent.$refs.contact.$el, { autoAlpha })
+                // const autoAlpha = (this.hover) ? 0 : 1
+                // TweenMax.set(this.$parent.$refs.logo.$el, { autoAlpha })
+                // TweenMax.set(this.$parent.$refs.navigation.$el, { autoAlpha })
+                // TweenMax.set(this.$parent.$refs.social.$el, { autoAlpha })
+                // TweenMax.set(this.$parent.$refs.contact.$el, { autoAlpha })
                 // this.animate(e)
             },
             animate(e) {

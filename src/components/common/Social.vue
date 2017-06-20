@@ -23,7 +23,7 @@
                 </svg>
             </li>
             <li class="label">
-                <span class="line"></span>stay tuned!
+                <span class="line"></span>Stay tuned!
             </li>
         </ul>
     </div>
@@ -32,6 +32,8 @@
 <script>
 
     import { TweenMax } from 'gsap'
+
+    import Device from '../../config/device'
 
     export default {
         name: 'social',
@@ -52,6 +54,7 @@
         },
         methods: {
             updateStatus(e) {
+                if (!Device.isDesktop) return
                 this.hover = !this.hover
                 this.animate(e)
             },
@@ -109,7 +112,7 @@
                     height: 1px;
                     background: white;
                     vertical-align: middle;
-                    margin: 0px 10px 0px 2px;
+                    margin: 0px 10px 0px 0px;
                     transform: translateY(-1px);
                     -webkit-transform: translateY(-1px);
                     -moz-transform: translateY(-1px);

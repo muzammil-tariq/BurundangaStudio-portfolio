@@ -6,6 +6,10 @@
 
 <script>
 
+    import { TweenMax } from 'gsap'
+
+    import Device from '../../config/device'
+
     export default {
         name: 'contact',
         data() {
@@ -25,6 +29,7 @@
         },
         methods: {
             updateStatus() {
+                if (!Device.isDesktop) return
                 this.hover = !this.hover
                 this.animate()
             },
