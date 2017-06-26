@@ -90,6 +90,10 @@
         canvas {
             width: 460px;
             height: 460px;
+            @media (max-width: 460px) {
+                width: 360px;
+                height: 360px;
+            }
         }
     }
 </style>

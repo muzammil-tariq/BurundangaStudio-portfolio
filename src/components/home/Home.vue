@@ -13,6 +13,8 @@
 
     import LogoSequence from './components/LogoSequence'
 
+    import Device from '../../config/device'
+
     export default {
         name: 'home',
         data() {
@@ -24,17 +26,20 @@
                 maxAngle: 20,
                 easing: 0.1,
                 raf: null,
-                canvas: null
+                canvas: null,
+                canvasContainer: null
             }
         },
         mounted() {
             this.canvas = this.$el.querySelector('canvas')
-            this.canvas.addEventListener('mousemove', this.onMousemove)
-            this.canvas.addEventListener('mouseenter', this.animate)
-            this.canvas.addEventListener('mouseleave', this.release)
+            this.canvasContainer = this.$el.querySelector('.content')
+            this.canvasContainer.addEventListener('mousemove', this.onMousemove)
+            this.canvasContainer.addEventListener('mouseenter', this.animate)
+            this.canvasContainer.addEventListener('mouseleave', this.release)
         },
         methods: {
             animate() {
+                if (!Device.isDesktop) return
                 let rotationX = this.prevX
                 let rotationY = this.prevY
                 rotationX += ((this.maxAngle * this.y) - this.prevX) * this.easing
@@ -64,9 +69,9 @@
             }
         },
         beforeDestroy() {
-            this.canvas.addEventListener('mousemove', this.onMousemove)
-            this.canvas.addEventListener('mouseenter', this.animate)
-            this.canvas.addEventListener('mouseleave', this.release)
+            this.canvasContainer.removeEventListener('mousemove', this.onMousemove)
+            this.canvasContainer.removeEventListener('mouseenter', this.animate)
+            this.canvasContainer.removeEventListener('mouseleave', this.release)
         },
         components: {
             LogoSequence

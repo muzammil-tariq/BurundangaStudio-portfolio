@@ -106,6 +106,9 @@
                 font-size: 18px;
                 margin: 0px 4px;
                 height: 12px;
+                @media (max-width: 460px) {
+                    margin: 0px 6px;
+                }
                 .line {
                     display: inline-block;
                     width: 10px;
@@ -138,9 +141,12 @@
                 -webkit-transform: translateY(-2px);
                 -moz-transform: translateY(-2px);
                 -ms-transform: translateY(-2px);
+                @media (max-width: 460px) {
+                    display: none;
+                }
             }
-            .facebook, .facebook svg { width: 7px; }
-            .twitter, .twitter svg, .instagram, .instagram svg  { width: 15px; }
+            .facebook, .facebook svg { width: 8px; }
+            .twitter, .twitter svg, .instagram, .instagram svg  { width: 16px; }
         }
     }
 </style>
