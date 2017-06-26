@@ -5,6 +5,7 @@
     <div class="home" id="home">
         <div class="content">
             <logo-sequence ref="logoSequence"></logo-sequence>
+            <!-- <breathing-logo v-if="hover" ref="breathingLogo"></breathing-logo> -->
         </div>
     </div>
 </template>
@@ -12,6 +13,7 @@
 <script>
 
     import LogoSequence from './components/LogoSequence'
+    // import BreathingLogo from './components/BreathingLogo'
 
     import Device from '../../config/device'
 
@@ -27,7 +29,8 @@
                 easing: 0.1,
                 raf: null,
                 canvas: null,
-                canvasContainer: null
+                canvasContainer: null,
+                hover: false
             }
         },
         mounted() {
@@ -69,12 +72,13 @@
             }
         },
         beforeDestroy() {
-            this.canvasContainer.removeEventListener('mousemove', this.onMousemove)
-            this.canvasContainer.removeEventListener('mouseenter', this.animate)
-            this.canvasContainer.removeEventListener('mouseleave', this.release)
+            // this.canvasContainer.removeEventListener('mousemove', this.onMousemove)
+            // this.canvasContainer.removeEventListener('mouseenter', this.animate)
+            // this.canvasContainer.removeEventListener('mouseleave', this.release)
         },
         components: {
-            LogoSequence
+            LogoSequence,
+            // BreathingLogo
         }
     }
 
