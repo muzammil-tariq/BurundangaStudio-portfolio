@@ -61,6 +61,8 @@
             enterAnimation() {
                 if (this.index === this.numFiles - 1) {
                     cancelAnimationFrame(this.raf)
+                    this.$parent.breathingLogoEnabled = true
+                    // TweenMax.set(this.$parent.canvas, { autoAlpha: 0 })
                     return
                 }
                 this.index++
