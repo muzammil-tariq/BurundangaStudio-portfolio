@@ -5,7 +5,7 @@
     <div class="home" id="home">
         <div class="content">
             <logo-sequence ref="logoSequence"></logo-sequence>
-            <!-- <breathing-logo v-if="hover" ref="breathingLogo"></breathing-logo> -->
+            <!-- <breathing-logo v-if="breathingLogoEnabled" ref="breathingLogo"></breathing-logo> -->
         </div>
     </div>
 </template>
@@ -72,9 +72,9 @@
             }
         },
         beforeDestroy() {
-            // this.canvasContainer.removeEventListener('mousemove', this.onMousemove)
-            // this.canvasContainer.removeEventListener('mouseenter', this.animate)
-            // this.canvasContainer.removeEventListener('mouseleave', this.release)
+            this.canvasContainer.removeEventListener('mousemove', this.onMousemove)
+            this.canvasContainer.removeEventListener('mouseenter', this.animate)
+            this.canvasContainer.removeEventListener('mouseleave', this.release)
         },
         components: {
             LogoSequence,
