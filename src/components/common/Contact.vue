@@ -24,16 +24,12 @@
         data() {
             return {
                 index: 0,
-                hover: false,
-                rainbowColors: [
-                    '#9400D3',
-                    '#4B0082',
-                    '#0000FF',
-                    '#00FF00',
-                    '#FFFF00',
-                    '#FF7F00',
-                    '#FF0000'
-                ]
+                hover: false
+            }
+        },
+        computed: {
+            rainbowColors() {
+                return this.$store.state.rainbowColors
             }
         },
         methods: {

@@ -3,12 +3,13 @@
 
 <template>
     <div id="web">
+        <div class="loader"></div>
         <logo ref="logo"></logo>
         <navigation ref="navigation"></navigation>
         <social ref="social"></social>
         <contact ref="contact"></contact>
         <transition name="transition" @enter="enter" @leave="leave" :css="false" mode="out-in" appear>
-            <router-view ref="page"></router-view>
+            <router-view v-if="loaded" ref="page"></router-view>
         </transition>
     </div>
 </template>
@@ -18,6 +19,8 @@
 import { TweenMax } from 'gsap'
 import assetsLoader from 'assets-loader'
 
+import store from './config/store'
+
 import Device from './config/device'
 import Logo from './components/common/Logo'
 import Contact from './components/common/Contact'
@@ -26,23 +29,67 @@ import Navigation from './components/common/Navigation'
 
 export default {
     name: 'web',
+    store,
     data() {
         return {
-            loader: null
+            loader: null,
+            loaded: false,
+            loaderEl: null,
+            numFiles: 97,
+            index: 0,
+            auxFiles: []
+        }
+    },
+    computed: {
+        rainbowColors() {
+            return this.$store.state.rainbowColors
+        },
+        files() {
+            return this.$store.state.files
         }
     },
     mounted() {
-        Device.setDevice()
+        this.loaderEl = this.$el.querySelector('.loader')
+        this.initLoader()
         this.loadImages()
+        Device.setDevice()
     },
     methods: {
+        initLoader() {
+            TweenMax.to(this.loaderEl, 0.05, {
+                background: this.rainbowColors[this.index],
+                onComplete: () => {
+                    if (!this.loaded) {
+                        this.index = (this.index === this.rainbowColors.length - 1) ? 0 : this.index + 1
+                        this.initLoader()
+                    }
+                }
+            })
+        },
         loadImages() {
             this.loader = assetsLoader({
-                assets: [
-                    'img/xavier_cusso.jpg',
-                    'img/christian_macmillan.jpg'
-                ]
-            }).start()
+                assets: this.getAssets()
+            })
+            .on('complete', () => {
+                TweenMax.to(this.loaderEl, 0.5, {
+                    scale: 0,
+                    ease: Power2.easeIn,
+                    onComplete: () => { this.loaded = true }
+                })
+            })
+            .start()
+        },
+        getAssets() {
+            for (let i = 0; i < this.numFiles; i++)
+                this.auxFiles.push('img/logo_sequence/burundanga_studio_ident_000' + this.returnId(i) + '.jpg')
+            this.auxFiles.push('img/xavier_cusso.jpg')
+            this.auxFiles.push('img/christian_macmillan.jpg')
+            this.$store.dispatch('setFiles', this.auxFiles)
+            return this.files
+        },
+        returnId(id) {
+            const n = (id < 10) ? '0' : ''
+            return n + String(id)
         },
         enter(el, done) {
             TweenMax.killTweensOf(this.$el)
@@ -75,6 +122,22 @@ export default {
         text-align: center;
         background: black;
         height: 100%;
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            background: white;
+        }
     }
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s

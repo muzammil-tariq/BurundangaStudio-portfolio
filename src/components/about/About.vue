@@ -31,16 +31,7 @@
                 hover: false,
                 index: 0,
                 xaviBg: false,
-                christianBg: false,
-                rainbowColors: [
-                    '#9400D3',
-                    '#4B0082',
-                    '#0000FF',
-                    '#00FF00',
-                    '#FFFF00',
-                    '#FF7F00',
-                    '#FF0000'
-                ]
+                christianBg: false
             }
         },
         methods: {
@@ -49,28 +40,6 @@
                 if (e.target.classList.value === 'xavi') this.xaviBg = !this.xaviBg
                 else this.christianBg = !this.christianBg
                 this.hover = !this.hover
-                // const autoAlpha = (this.hover) ? 0 : 1
-                // TweenMax.set(this.$parent.$refs.logo.$el, { autoAlpha })
-                // TweenMax.set(this.$parent.$refs.navigation.$el, { autoAlpha })
-                // TweenMax.set(this.$parent.$refs.social.$el, { autoAlpha })
-                // TweenMax.set(this.$parent.$refs.contact.$el, { autoAlpha })
-                // this.animate(e)
-            },
-            animate(e) {
-                if (!this.hover) return
-                const a = e.target
-                TweenMax.to(a, 0.05, {
-                    color: this.rainbowColors[this.index],
-                    onComplete: () => {
-                        if (!this.hover) {
-                            this.index = 0
-                            TweenMax.to(a, 0.05, { color: 'white' })
-                        } else {
-                            this.index = (this.index === this.rainbowColors.length - 1) ? 0 : this.index + 1
-                            this.animate(e)
-                        }
-                    }
-                })
             },
             openXavi() {
                 window.open('https://twitter.com/xaviercusso', '_blank')
