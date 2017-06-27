@@ -27,6 +27,14 @@
         z-index: 2;
         top: 35px;
         left: 30px;
+        @media (max-width: 460px) {
+            top: 30px;
+            left: 25px;
+        }
+        @media (max-height: 460px) {
+            top: 30px;
+            left: 25px;
+        }
         svg {
             width: 150px;
             path {

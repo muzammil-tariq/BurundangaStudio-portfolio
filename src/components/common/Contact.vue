@@ -73,6 +73,14 @@
         bottom: 30px;
         right: 30px;
         z-index: 9;
+        @media (max-width: 460px) {
+            bottom: 25px;
+            right: 25px;
+        }
+        @media (max-height: 460px) {
+            bottom: 25px;
+            right: 25px;
+        }
         a {
             cursor: pointer;
             font-size: 18px;

@@ -89,8 +89,16 @@
     .social {
         position: absolute;
         z-index: 2;
-        bottom: 30px;
+        bottom: 33px;
         left: 30px;
+        @media (max-width: 460px) {
+            bottom: 28px;
+            left: 25px;
+        }
+        @media (max-height: 460px) {
+            bottom: 28px;
+            left: 25px;
+        }
         ul {
             margin: 0;
             padding: 0;

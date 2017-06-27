@@ -110,6 +110,11 @@
                 line-height: 48px;
                 width: 775px;
                 text-align: justify;
+                @media screen and ( max-height: 460px ){
+                    font-size: 18px;
+                    line-height: 28px;
+                    width: 435px;
+                }
                 a {
                     cursor: pointer;
                     position: relative;
@@ -129,12 +134,18 @@
             @media (max-width: 860px) {
                 display: none;
             }
+            @media screen and ( max-height: 460px ){
+                display: block !important;
+            }
         }
         .small-device {
             width: 100%;
             display: none;
             @media (max-width: 860px) {
                 display: block;
+            }
+            @media screen and ( max-height: 460px ){
+                display: none !important;
             }
             svg {
                 width: 60%;

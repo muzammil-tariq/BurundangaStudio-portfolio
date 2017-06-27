@@ -1,11 +1,11 @@
 <template>
     <div class="navigation" @click="switchPage" @mouseenter="updateStatus" @mouseleave="updateStatus">
         <div class="cross">
-            <svg viewBox="0 0 13.44 13.44">
-                  <title>
-                      cross
-                  </title>
-                  <path d="M13.44.71L12.73 0 6.72 6.01.71 0 0 .71l6.01 6.01L0 12.73l.71.71 6.01-6.02 6.01 6.02.71-.71-6.02-6.01L13.44.71"/>
+            <svg viewBox="0 0 18 18">
+                <title>
+                    close_icn
+                </title>
+                <path d="M3 2.3l-.7.7 6 6-6 6 .7.7 6-6 6 6 .7-.7-6-6 6-6-.7-.7-6 6"/>
             </svg>
         </div>
         <a class="home"><span class="mask">Close <span class="line"></span></span></a>
@@ -93,18 +93,20 @@
                 }, transitionTime * 1750)
             },
             transitionToHomeWith(transitionTime) {
+                TweenMax.to(this.$el, transitionTime * 0.5, { width: 60 })
                 TweenMax.to(this.homeLinkObj, transitionTime * 0.5, { x: -75 })
                 TweenMax.to(this.homeLinkObjMask, transitionTime * 0.5, { x: 75 })
                 TweenMax.to(this.aboutLinkObj, transitionTime * 0.5, { x: 0 })
                 TweenMax.to(this.aboutLinkObjMask, transitionTime * 0.5, { x: 0 })
-                TweenMax.to(this.crossObj, transitionTime * 0.5, { rotation: 45, x: -44, y: 2, z: 0, onComplete: () => { this.inTransition = false } })
+                TweenMax.to(this.crossObj, transitionTime * 0.5, { rotation: 45, x: -42, z: 0, onComplete: () => { this.inTransition = false } })
             },
             transitionToAboutWith(transitionTime) {
+                TweenMax.to(this.$el, transitionTime * 0.5, { width: 93 })
                 TweenMax.to(this.aboutLinkObj, transitionTime * 0.25, { x: 30 })
                 TweenMax.to(this.aboutLinkObjMask, transitionTime * 0.25, { x: -30 })
                 TweenMax.to(this.homeLinkObj, transitionTime * 0.5, { x: 0 })
                 TweenMax.to(this.homeLinkObjMask, transitionTime * 0.5, { x: 0 })
-                TweenMax.to(this.crossObj, transitionTime * 0.5, { rotation: 0, x: 0, y: 2, z: 0, onComplete: () => { this.inTransition = false } })
+                TweenMax.to(this.crossObj, transitionTime * 0.5, { rotation: 0, x: 2, z: 0, onComplete: () => { this.inTransition = false } })
             }
         }
     }
@@ -113,13 +115,23 @@
 
 <style lang="scss" scoped>
     .navigation {
+        height: 20px;
         cursor: pointer;
         position: absolute;
         z-index: 2;
-        top: 35px;
+        top: 33px;
         right: 30px;
         text-align: right;
+        @media (max-width: 460px) {
+            top: 28px;
+            right: 25px;
+        }
+        @media (max-height: 460px) {
+            top: 28px;
+            right: 25px;
+        }
         a {
+            pointer-events: none;
             position: absolute;
             font-size: 18px;
             right: 0;
@@ -136,10 +148,16 @@
                 background: white;
                 vertical-align: middle;
                 margin: 0px 4px;
+                @media (max-width: 360px) {
+                    display: none;
+                }
             }
         }
         .home {
             right: 20px;
+            @media (max-width: 360px) {
+                right: 24px;
+            }
             .mask {
                 width: 75px;
             }
@@ -148,7 +166,7 @@
             position: absolute;
             right: 0;
             svg {
-                width: 13px;
+                width: 18px;
                 fill: white;
             }
         }

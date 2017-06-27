@@ -96,6 +96,22 @@
                 width: 360px;
                 height: 360px;
             }
+            @media (max-width: 360px) {
+                width: 300px;
+                height: 300px;
+            }
+            @media screen and ( max-height: 460px ){
+                width: 360px;
+                height: 360px;
+            }
+            @media screen and ( max-height: 360px ){
+                width: 280px;
+                height: 280px;
+            }
+            @media screen and ( max-height: 320px ){
+                width: 250px;
+                height: 250px;
+            }
         }
     }
 </style>
