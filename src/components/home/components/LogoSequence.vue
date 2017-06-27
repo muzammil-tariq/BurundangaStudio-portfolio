@@ -38,9 +38,9 @@
             }
         },
         mounted() {
-            this.loadImages()
             this.loaderEl = this.$el.querySelector('.loader')
             this.initLoader()
+            this.loadImages()
             this.canvas = this.$el.querySelector('#sequence')
             this.context = this.canvas.getContext('2d')
         },
@@ -49,13 +49,11 @@
                 this.loader = assetsLoader({
                     assets: this.getAssets()
                 })
-                .on('progress', (percent) => {
-                    TweenMax.to(this.loaderEl, 0.1, { width: percent * 200 })
-                })
                 .on('complete', () => {
                     this.initCanvas()
                     TweenMax.to(this.loaderEl, 0.5, {
-                        width: 0,
+                        scale: 0,
+                        ease: Power2.easeIn,
                         onComplete: this.enterAnimation
                     })
                 })
@@ -128,8 +126,12 @@
             -webkit-transform: translate(-50%, -50%);
             -moz-transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
-            height: 2px;
-            border-radius: 0.5px;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
             background: white;
         }
         canvas {
