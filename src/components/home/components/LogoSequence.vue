@@ -3,6 +3,7 @@
 
 <template>
     <div class="logo-sequence">
+        <div class="loader"></div>
         <canvas class="sequence" id="sequence"></canvas>
     </div>
 </template>
@@ -19,15 +20,27 @@
                 context: null,
                 numFiles: 97,
                 loader: null,
+                loaderEl: null,
                 raf: null,
+                loaded: false,
+                loaderIndex: 0,
                 index: 0,
-                files: []
+                files: [],
+                rainbowColors: [
+                    '#9400D3',
+                    '#4B0082',
+                    '#0000FF',
+                    '#00FF00',
+                    '#FFFF00',
+                    '#FF7F00',
+                    '#FF0000'
+                ]
             }
         },
-        created() {
-            this.loadImages()
-        },
         mounted() {
+            this.loadImages()
+            this.loaderEl = this.$el.querySelector('.loader')
+            this.initLoader()
             this.canvas = this.$el.querySelector('#sequence')
             this.context = this.canvas.getContext('2d')
         },
@@ -36,11 +49,28 @@
                 this.loader = assetsLoader({
                     assets: this.getAssets()
                 })
+                .on('progress', (percent) => {
+                    TweenMax.to(this.loaderEl, 0.1, { width: percent * 200 })
+                })
                 .on('complete', () => {
                     this.initCanvas()
-                    this.enterAnimation()
+                    TweenMax.to(this.loaderEl, 0.5, {
+                        width: 0,
+                        onComplete: this.enterAnimation
+                    })
                 })
                 .start()
+            },
+            initLoader() {
+                TweenMax.to(this.loaderEl, 0.05, {
+                    background: this.rainbowColors[this.loaderIndex],
+                    onComplete: () => {
+                        if (!this.loaded) {
+                            this.loaderIndex = (this.loaderIndex === this.rainbowColors.length - 1) ? 0 : this.loaderIndex + 1
+                            this.initLoader()
+                        }
+                    }
+                })
             },
             getAssets() {
                 for (let i = 0; i < this.numFiles; i++)
@@ -59,10 +89,10 @@
                 this.context.drawImage(img, 0, 0)
             },
             enterAnimation() {
+                this.loaded = true
                 if (this.index === this.numFiles - 1) {
                     cancelAnimationFrame(this.raf)
                     this.$parent.breathingLogoEnabled = true
-                    // TweenMax.set(this.$parent.canvas, { autoAlpha: 0 })
                     return
                 }
                 this.index++
@@ -89,6 +119,18 @@
 
 <style lang="scss" scoped>
     .logo-sequence {
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            height: 2px;
+            border-radius: 0.5px;
+            background: white;
+        }
         canvas {
             width: 460px;
             height: 460px;

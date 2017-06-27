@@ -5,7 +5,7 @@
     <div class="home" id="home">
         <div class="content">
             <logo-sequence ref="logoSequence"></logo-sequence>
-            <!-- <breathing-logo v-if="breathingLogoEnabled" ref="breathingLogo"></breathing-logo> -->
+            <breathing-logo v-if="breathingLogoEnabled" ref="breathingLogo"></breathing-logo>
         </div>
     </div>
 </template>
@@ -36,9 +36,9 @@
         mounted() {
             this.canvas = this.$el.querySelector('canvas')
             this.canvasContainer = this.$el.querySelector('.content')
-            this.canvasContainer.addEventListener('mousemove', this.onMousemove)
-            this.canvasContainer.addEventListener('mouseenter', this.animate)
-            this.canvasContainer.addEventListener('mouseleave', this.release)
+            // this.canvasContainer.addEventListener('mousemove', this.onMousemove)
+            // this.canvasContainer.addEventListener('mouseenter', this.animate)
+            // this.canvasContainer.addEventListener('mouseleave', this.release)
         },
         methods: {
             animate() {
@@ -66,17 +66,16 @@
             },
             leave(el, done) {
                 TweenMax.killTweensOf(this.$el)
-                TweenMax.set(this.canvas, { autoAlpha: 1 })
-                this.breathingLogoEnabled = false
+                this.$refs.breathingLogo.hide()
                 this.$refs.logoSequence.index = this.$refs.logoSequence.numFiles
                 this.$refs.logoSequence.leaveAnimation()
                 setTimeout(done, 1750)
             }
         },
         beforeDestroy() {
-            this.canvasContainer.removeEventListener('mousemove', this.onMousemove)
-            this.canvasContainer.removeEventListener('mouseenter', this.animate)
-            this.canvasContainer.removeEventListener('mouseleave', this.release)
+            // this.canvasContainer.removeEventListener('mousemove', this.onMousemove)
+            // this.canvasContainer.removeEventListener('mouseenter', this.animate)
+            // this.canvasContainer.removeEventListener('mouseleave', this.release)
         },
         components: {
             LogoSequence,
