@@ -93,6 +93,7 @@
                 if (this.index === this.numFiles - 1) {
                     cancelAnimationFrame(this.raf)
                     this.$parent.breathingLogoEnabled = true
+                    this.$nextTick(this.$parent.setListeners)
                     return
                 }
                 this.index++
