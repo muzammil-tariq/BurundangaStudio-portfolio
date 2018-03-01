@@ -1,7 +1,7 @@
 <template>
     <div class="contact" @mouseenter="updateStatus" @mouseleave="updateStatus" @click="sendEmail">
         <div class="normal-device">
-            <a>_@burundanga.studio</a>
+            <a>showmethemoney@burundanga.studio</a>
         </div>
         <div class="small-device">
             <a>Mail us</a>
@@ -55,7 +55,7 @@
                 })
             },
             sendEmail() {
-                window.location.href = 'mailto:_@burundanga.studio.com?subject=We%20need%20some%20good%20Burundanga'
+                window.location.href = 'mailto:showmethemoney@burundanga.studio.com?subject=We%20need%20some%20good%20Burundanga'
             }
         }
     }
@@ -83,13 +83,13 @@
             color: white;
         }
         .normal-device {
-            @media (max-width: 460px) {
+            @media (max-width: 620px) {
                 display: none;
             }
         }
         .small-device {
             display: none;
-            @media (max-width: 460px) {
+            @media (max-width: 620px) {
                 display: block;
             }
             .line {

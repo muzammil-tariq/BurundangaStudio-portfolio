@@ -8,8 +8,8 @@
         <navigation ref="navigation"></navigation>
         <social ref="social"></social>
         <contact ref="contact"></contact>
-        <transition name="transition" @enter="enter" @leave="leave" :css="false" mode="out-in" appear>
-            <router-view v-if="loaded" ref="page"></router-view>
+        <transition v-if="loaded" name="transition" @enter="enter" @leave="leave" :css="false" mode="out-in" appear>
+            <router-view ref="page"></router-view>
         </transition>
     </div>
 </template>
@@ -50,18 +50,18 @@ export default {
     },
     mounted() {
         this.loaderEl = this.$el.querySelector('.loader')
-        this.initLoader()
         this.loadImages()
+        this.loaderAnimation()
         Device.setDevice()
     },
     methods: {
-        initLoader() {
+        loaderAnimation() {
             TweenMax.to(this.loaderEl, 0.05, {
                 background: this.rainbowColors[this.index],
                 onComplete: () => {
                     if (!this.loaded) {
                         this.index = (this.index === this.rainbowColors.length - 1) ? 0 : this.index + 1
-                        this.initLoader()
+                        this.loaderAnimation()
                     }
                 }
             })
@@ -70,11 +70,14 @@ export default {
             this.loader = assetsLoader({
                 assets: this.getAssets()
             })
-            .on('complete', () => {
+            .on('complete', (files) => {
+                this.$store.dispatch('setFiles', files)
                 TweenMax.to(this.loaderEl, 0.5, {
                     scale: 0,
                     ease: Power2.easeIn,
-                    onComplete: () => { this.loaded = true }
+                    onComplete: () => {
+                        this.loaded = true
+                    }
                 })
             })
             .start()
@@ -84,8 +87,7 @@ export default {
                 this.auxFiles.push('img/logo_sequence/burundanga_studio_ident_000' + this.returnId(i) + '.jpg')
             this.auxFiles.push('img/xavier_cusso.jpg')
             this.auxFiles.push('img/christian_macmillan.jpg')
-            this.$store.dispatch('setFiles', this.auxFiles)
-            return this.files
+            return this.auxFiles
         },
         returnId(id) {
             const n = (id < 10) ? '0' : ''

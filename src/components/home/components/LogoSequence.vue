@@ -33,11 +33,9 @@
         },
         methods: {
             initCanvas() {
-                const img = new Image()
-                img.src = this.files[this.index]
-                this.canvas.width = img.width
-                this.canvas.height = img.height
-                this.context.drawImage(img, 0, 0)
+                this.canvas.width = this.files[this.index].file.width
+                this.canvas.height = this.files[this.index].file.height
+                this.context.drawImage(this.files[this.index].file, 0, 0)
             },
             enterAnimation() {
                 if (this.index === this.numFiles - 1) {
@@ -47,9 +45,7 @@
                     return
                 }
                 this.index++
-                const img = new Image()
-                img.src = this.files[this.index]
-                this.context.drawImage(img, 0, 0)
+                this.context.drawImage(this.files[this.index].file, 0, 0)
                 this.raf = requestAnimationFrame(this.enterAnimation)
             },
             leaveAnimation() {
@@ -58,9 +54,7 @@
                     return
                 }
                 this.index--
-                const img = new Image()
-                img.src = this.files[this.index]
-                this.context.drawImage(img, 0, 0)
+                this.context.drawImage(this.files[this.index].file, 0, 0)
                 this.raf = requestAnimationFrame(this.leaveAnimation)
             }
         }
