@@ -73,7 +73,7 @@ const Device = {
             else if (this.browser.iedge) msg = msg + 'Internet Edge'
             else if (this.browser.opera) msg = msg + 'Opera'
         }
-        console.info(msg)
+        console.info("Device: " + msg)
     },
     setDevice() {
         this.setSize()
