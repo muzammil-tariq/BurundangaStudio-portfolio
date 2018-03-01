@@ -25,8 +25,19 @@ const routes = [
                 component: (resolve) => {
                     require(['./../components/about/About.vue'], resolve)
                 }
-            }
+            },
+            {
+              name: '404',
+              path: '/error_404',
+              component: (resolve) => {
+                  require(['./../components/404/404.vue'], resolve)
+              }
+          }
         ]
+    },
+    {
+      path: '*',
+      redirect: '/error_404'
     }
 ]
 
