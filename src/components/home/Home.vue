@@ -47,6 +47,7 @@
         methods: {
             setListeners() {
                 window.addEventListener('mousemove', this.onMousemove)
+                if (Device.isMobile) Gyro.startTracking(this.onGyro)
                 this.animate()
             },
             animate() {
@@ -58,7 +59,6 @@
                 TweenMax.set(this.canvas, { rotationX, rotationY })
                 this.prevX = rotationX
                 this.prevY = rotationY
-                if (Device.isMobile) Gyro.startTracking(this.onGyro)
                 this.raf = requestAnimationFrame(this.animate)
             },
             release() {
@@ -91,6 +91,7 @@
             }
         },
         beforeDestroy() {
+            Gyro.stopTracking()
             window.removeEventListener('mousemove', this.onMousemove)
         },
         components: {
