@@ -42,7 +42,6 @@
             this.userAgent = navigator.userAgent || navigator.vendor || window.opera
             this.auxDevice = Boolean(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
             this.sign = ((/android/i.test(this.userAgent)) || (/android/i.test(this.userAgent))) ? 1 : -1
-            Gyro.startTracking(this.onGyro)
             window.addEventListener('resize', this.onResize)
         },
         methods: {
@@ -59,6 +58,7 @@
                 TweenMax.set(this.canvas, { rotationX, rotationY })
                 this.prevX = rotationX
                 this.prevY = rotationY
+                if (Device.isMobile) Gyro.startTracking(this.onGyro)
                 this.raf = requestAnimationFrame(this.animate)
             },
             release() {
@@ -75,9 +75,9 @@
                 this.y = -((e.pageY - halfHeight) / halfHeight).toFixed(2)
             },
             onGyro(o) {
-              if (this.initY === 0) this.initY = Number(o.z)
+              // if (this.initY === 0) this.initY = Number(o.z)
               this.x = Math.min(Math.max(-1.5, (Number(o.x))), 1.5) * -this.sign
-              this.y = Math.min(Math.max(-1.5, (Number(o.z) - this.initY)), 1.5) * this.sign
+              // this.y = Math.min(Math.max(-1.5, (Number(o.z) - this.initY)), 1.5) * this.sign
             },
             leave(el, done) {
                 TweenMax.killTweensOf(this.$el)
