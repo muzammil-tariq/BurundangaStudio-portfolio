@@ -14,7 +14,7 @@
     import LogoSequence from './components/LogoSequence'
 
     import Device from '../../config/device'
-    import Gyro from '../../../local_modules/gyro'
+    // import Gyro from '../../../local_modules/gyro'
 
     export default {
         name: 'home',
@@ -42,7 +42,7 @@
             this.userAgent = navigator.userAgent || navigator.vendor || window.opera
             this.auxDevice = Boolean(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
             this.sign = ((/android/i.test(this.userAgent)) || (/android/i.test(this.userAgent))) ? 1 : -1
-            Gyro.startTracking(this.onGyro)
+            // Gyro.startTracking(this.onGyro)
             window.addEventListener('resize', this.onResize)
         },
         methods: {
