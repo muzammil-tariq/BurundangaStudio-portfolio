@@ -1,7 +1,7 @@
 <template>
     <div class="contact" @mouseenter="updateStatus" @mouseleave="updateStatus" @click="sendEmail">
         <div class="normal-device">
-            <a>showmethemoney@burundanga.studio</a>
+            <a>askfor@burundanga.studio</a>
         </div>
         <div class="small-device">
             <a>Mail us</a>
@@ -55,7 +55,7 @@
                 })
             },
             sendEmail() {
-                window.location.href = 'mailto:showmethemoney@burundanga.studio.com?subject=We%20need%20some%20good%20Burundanga'
+                window.location.href = 'mailto:askfor@burundanga.studio.com?subject=We%20need%20some%20good%20Burundanga'
             }
         }
     }

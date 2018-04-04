@@ -3,7 +3,7 @@
 
 <template>
     <div class="logo-sequence">
-        <canvas class="sequence" id="sequence"></canvas>
+        <img alt="burundanga logo">
     </div>
 </template>
 
@@ -13,8 +13,7 @@
         name: 'logo-sequence',
         data() {
             return {
-                canvas: null,
-                context: null,
+                imageEl: null,
                 numFiles: 97,
                 raf: null,
                 index: 0,
@@ -26,16 +25,13 @@
             }
         },
         mounted() {
-            this.canvas = this.$el.querySelector('#sequence')
-            this.context = this.canvas.getContext('2d')
-            this.initCanvas()
+            this.imageEl = this.$el.querySelector('img')
+            this.init()
             this.enterAnimation()
         },
         methods: {
-            initCanvas() {
-                this.canvas.width = this.files[this.index].file.width
-                this.canvas.height = this.files[this.index].file.height
-                this.context.drawImage(this.files[this.index].file, 0, 0)
+            init() {
+                this.imageEl.src = this.files[this.index].file.src
             },
             enterAnimation() {
                 if (this.index === this.numFiles - 1) {
@@ -45,7 +41,7 @@
                     return
                 }
                 this.index++
-                this.context.drawImage(this.files[this.index].file, 0, 0)
+                this.imageEl.src = this.files[this.index].file.src
                 this.raf = requestAnimationFrame(this.enterAnimation)
             },
             leaveAnimation() {
@@ -54,7 +50,7 @@
                     return
                 }
                 this.index--
-                this.context.drawImage(this.files[this.index].file, 0, 0)
+                this.imageEl.src = this.files[this.index].file.src
                 this.raf = requestAnimationFrame(this.leaveAnimation)
             }
         }
@@ -64,7 +60,7 @@
 
 <style lang="scss" scoped>
     .logo-sequence {
-        canvas {
+        img {
             width: 460px;
             height: 460px;
             @media (max-width: 460px) {

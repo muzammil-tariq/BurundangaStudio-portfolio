@@ -42,7 +42,7 @@
                 this.hover = !this.hover
             },
             openXavi() {
-                window.open('https://twitter.com/xaviercusso', '_blank')
+                window.open('https://xaviercusso.com', '_blank')
             },
             openChristian() {
                 window.open('https://twitter.com/cmacmillanmarin', '_blank')

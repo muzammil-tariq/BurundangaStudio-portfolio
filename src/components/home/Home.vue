@@ -27,8 +27,8 @@
                 maxAngle: 15,
                 easing: 0.1,
                 raf: null,
-                canvas: null,
-                canvasContainer: null,
+                imageEl: null,
+                imageContainer: null,
                 animating: false,
                 userAgent: 0,
                 auxDevice: 0,
@@ -37,8 +37,8 @@
             }
         },
         mounted() {
-            this.canvas = this.$el.querySelector('canvas')
-            this.canvasContainer = this.$el.querySelector('.content')
+            this.imageEl = this.$el.querySelector('img')
+            this.imageContainer = this.$el.querySelector('.content')
             this.userAgent = navigator.userAgent || navigator.vendor || window.opera
             this.auxDevice = Boolean(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
             this.sign = ((/android/i.test(this.userAgent)) || (/android/i.test(this.userAgent))) ? 1 : -1
@@ -56,7 +56,7 @@
                 let rotationY = this.prevY
                 rotationX += ((this.maxAngle * this.y) - this.prevX) * this.easing
                 rotationY += ((this.maxAngle * this.x) - this.prevY) * this.easing
-                TweenMax.set(this.canvas, { rotationX, rotationY })
+                TweenMax.set(this.imageEl, { rotationX, rotationY })
                 this.prevX = rotationX
                 this.prevY = rotationY
                 this.raf = requestAnimationFrame(this.animate)
@@ -66,7 +66,7 @@
                 this.animating = false
                 this.prevX = 0
                 this.prevY = 0
-                TweenMax.to(this.canvas, 0.75, { rotationX: 0, rotationY: 0 })
+                TweenMax.to(this.imageEl, 0.75, { rotationX: 0, rotationY: 0 })
             },
             onMousemove(e) {
                 const halfWidth = (window.innerWidth * 0.5)
