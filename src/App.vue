@@ -71,23 +71,12 @@ export default {
             const assets = this.getAssets();
             for (const asset of assets) {
                 const image = new Image();
-                try {
-                    image.src = asset;
-                    image.decode()
-                    .then(() => {
-                        c++;
-                        files.push(image);
-                        c === assets.length && this.endLoader(files);
-                    })
-                    .catch(() => { throw new Error(`Could not load/decode ${asset}.`) });
-                } catch (error) {
-                    image.onload = () => {
-                        c++;
-                        files.push(image);
-                        c === assets.length && this.endLoader(files);
-                    }
-                    image.src = asset;
+                image.onload = () => {
+                    c++;
+                    files.push(image);
+                    c === assets.length && this.endLoader(files);
                 }
+                image.src = asset;
             }
         },
         endLoader(files) {
