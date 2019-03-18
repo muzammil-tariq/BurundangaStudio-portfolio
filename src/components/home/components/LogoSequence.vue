@@ -31,7 +31,6 @@
         },
         methods: {
             init() {
-                console.log(this.files, this.index, this.files[this.index])
                 this.imageEl.src = this.files[this.index].src
             },
             enterAnimation() {

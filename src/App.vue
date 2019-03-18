@@ -91,7 +91,6 @@ export default {
             }
         },
         endLoader(files) {
-            console.log(files)
             this.$store.dispatch('setFiles', files)
             TweenMax.to(this.loaderEl, 0.5, {
                 scale: 0,
