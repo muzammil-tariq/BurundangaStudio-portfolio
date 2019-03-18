@@ -33,6 +33,8 @@ module.exports = {
     'curly': 0,
     'no-undef': 0,
     'max-len': 0,
+    'no-loop-func': 0,
+    'no-unused-expressions': 0,
     // extra
     'import/extensions': ['error', 'always', {
       'js': 'never',

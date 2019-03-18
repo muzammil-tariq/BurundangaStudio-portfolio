@@ -31,7 +31,8 @@
         },
         methods: {
             init() {
-                this.imageEl.src = this.files[this.index].file.src
+                console.log(this.files, this.index, this.files[this.index])
+                this.imageEl.src = this.files[this.index].src
             },
             enterAnimation() {
                 if (this.index === this.numFiles - 1) {
@@ -41,7 +42,7 @@
                     return
                 }
                 this.index++
-                this.imageEl.src = this.files[this.index].file.src
+                this.imageEl.src = this.files[this.index].src
                 this.raf = requestAnimationFrame(this.enterAnimation)
             },
             leaveAnimation() {
@@ -50,7 +51,7 @@
                     return
                 }
                 this.index--
-                this.imageEl.src = this.files[this.index].file.src
+                this.imageEl.src = this.files[this.index].src
                 this.raf = requestAnimationFrame(this.leaveAnimation)
             }
         }

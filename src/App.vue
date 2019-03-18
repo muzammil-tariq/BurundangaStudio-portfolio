@@ -17,7 +17,6 @@
 <script>
 
 import { TweenMax } from 'gsap'
-import assetsLoader from 'assets-loader'
 
 import store from './config/store'
 
@@ -67,20 +66,40 @@ export default {
             })
         },
         loadImages() {
-            this.loader = assetsLoader({
-                assets: this.getAssets()
-            })
-            .on('complete', (files) => {
-                this.$store.dispatch('setFiles', files)
-                TweenMax.to(this.loaderEl, 0.5, {
-                    scale: 0,
-                    ease: Power2.easeIn,
-                    onComplete: () => {
-                        this.loaded = true
+            let c = 1;
+            const files = [];
+            const assets = this.getAssets();
+            for (const asset of assets) {
+                const image = new Image();
+                try {
+                    image.src = asset;
+                    image.decode()
+                    .then(() => {
+                        c++;
+                        files.push(image);
+                        c === assets.length && this.endLoader(files);
+                    })
+                    .catch(() => { throw new Error(`Could not load/decode ${asset}.`) });
+                } catch (error) {
+                    image.onload = () => {
+                        c++;
+                        files.push(image);
+                        c === assets.length && this.endLoader(files);
                     }
-                })
+                    image.src = asset;
+                }
+            }
+        },
+        endLoader(files) {
+            console.log(files)
+            this.$store.dispatch('setFiles', files)
+            TweenMax.to(this.loaderEl, 0.5, {
+                scale: 0,
+                ease: Power2.easeIn,
+                onComplete: () => {
+                    this.loaded = true
+                }
             })
-            .start()
         },
         getAssets() {
             for (let i = 0; i < this.numFiles; i++)

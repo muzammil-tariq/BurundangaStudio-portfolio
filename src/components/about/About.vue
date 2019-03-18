@@ -45,7 +45,7 @@
                 window.open('https://xaviercusso.com', '_blank')
             },
             openChristian() {
-                window.open('https://twitter.com/cmacmillanmarin', '_blank')
+                window.open('https://cmacmillanmarin.com', '_blank')
             }
         },
         components: {
