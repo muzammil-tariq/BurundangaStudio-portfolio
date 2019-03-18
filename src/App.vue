@@ -71,12 +71,23 @@ export default {
             const assets = this.getAssets();
             for (const asset of assets) {
                 const image = new Image();
-                image.onload = () => {
-                    c++;
-                    files.push(image);
-                    c === assets.length && this.endLoader(files);
+                try {
+                    image.src = asset;
+                    image.decode()
+                    .then(() => {
+                        c++;
+                        files.push(image);
+                        c === assets.length && this.endLoader(files);
+                    })
+                    .catch(() => { throw new Error(`Could not load/decode ${asset}.`) });
+                } catch (error) {
+                    image.onload = () => {
+                        c++;
+                        files.push(image);
+                        c === assets.length && this.endLoader(files);
+                    }
+                    image.src = asset;
                 }
-                image.src = asset;
             }
         },
         endLoader(files) {
@@ -92,8 +103,6 @@ export default {
         getAssets() {
             for (let i = 0; i < this.numFiles; i++)
                 this.auxFiles.push('img/logo_sequence/burundanga_studio_ident_000' + this.returnId(i) + '.jpg')
-            this.auxFiles.push('img/xavier_cusso.jpg')
-            this.auxFiles.push('img/christian_macmillan.jpg')
             return this.auxFiles
         },
         returnId(id) {
