@@ -37,7 +37,7 @@
             }
         },
         mounted() {
-            this.imageEl = this.$el.querySelector('img')
+            this.imageEl = this.$el.querySelector('canvas')
             this.imageContainer = this.$el.querySelector('.content')
             this.userAgent = navigator.userAgent || navigator.vendor || window.opera
             this.auxDevice = Boolean(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
@@ -82,8 +82,9 @@
             leave(el, done) {
                 TweenMax.killTweensOf(this.$el)
                 this.$refs.logoSequence.index = this.$refs.logoSequence.numFiles
+                this.$refs.logoSequence.startAnimating()
                 this.$refs.logoSequence.leaveAnimation()
-                setTimeout(done, 1750)
+                setTimeout(done, 1250)
             },
             onResize() {
                 if (!Device.isDesktop && this.animating) this.release()

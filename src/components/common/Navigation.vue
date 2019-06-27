@@ -86,7 +86,7 @@
                 setTimeout(() => {
                     if (this.$route.name === 'home') this.transitionToHomeWith(transitionTime)
                     else this.transitionToAboutWith(transitionTime)
-                }, transitionTime * 1750)
+                }, transitionTime * 1250)
             },
             transitionToHomeWith(transitionTime) {
                 TweenMax.to(this.$el, transitionTime * 0.5, { width: 60 })

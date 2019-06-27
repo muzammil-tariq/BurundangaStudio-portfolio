@@ -34,7 +34,7 @@ export default {
             loader: null,
             loaded: false,
             loaderEl: null,
-            numFiles: 97,
+            numFiles: 41,
             index: 0,
             auxFiles: []
         }
@@ -69,21 +69,22 @@ export default {
             let c = 1;
             const files = [];
             const assets = this.getAssets();
-            for (const asset of assets) {
+            for (let i = 0; i < assets.length - 1; i++) {
+                const asset = assets[i];
                 const image = new Image();
                 try {
                     image.src = asset;
                     image.decode()
                     .then(() => {
                         c++;
-                        files.push(image);
+                        files[i] = image;
                         c === assets.length && this.endLoader(files);
                     })
                     .catch(() => { throw new Error(`Could not load/decode ${asset}.`) });
                 } catch (error) {
                     image.onload = () => {
                         c++;
-                        files.push(image);
+                        files[i] = image;
                         c === assets.length && this.endLoader(files);
                     }
                     image.src = asset;
@@ -102,7 +103,7 @@ export default {
         },
         getAssets() {
             for (let i = 0; i < this.numFiles; i++)
-                this.auxFiles.push('img/logo_sequence/burundanga_studio_ident_000' + this.returnId(i) + '.jpg')
+                this.auxFiles.push('img/logo_sequence/burundanga_studio_ident00' + this.returnId(i) + '.jpg')
             return this.auxFiles
         },
         returnId(id) {
